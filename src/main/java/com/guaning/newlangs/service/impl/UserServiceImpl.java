@@ -141,8 +141,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		} catch (Exception e) {
 			return SaResult.error("redis缓存失败");
 		}
-		String username = "houlangs";
-		String APIKEY = "7ee4e5e22aa7479cbd8cbbe3beb917c0";
+		String username = "";
+		String APIKEY = "";
 		String content = "【OurWorld(域名服务)域名】您的验证码为：" + code;
 		log.info("code = {}", code);
 
