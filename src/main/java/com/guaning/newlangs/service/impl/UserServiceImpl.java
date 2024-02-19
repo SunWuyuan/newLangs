@@ -115,7 +115,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		try {
 			// 邮件发送验证码
 			MailUtil.send(account, CollUtil.newArrayList(email), "NewLangs",
-					"您的newLangs邮箱验证码为：" + code + ",验证码有效期为2分钟,感谢您的注册,祝您使用愉快！!", false);
+					"您的厚浪邮箱验证码为：" + code + ",验证码有效期为2分钟,感谢您的注册,祝您使用愉快！!", false);
 		} catch (Exception e) {
 			// 发送失败，删除缓存
 			redisTemplate.delete(email);
@@ -141,9 +141,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		} catch (Exception e) {
 			return SaResult.error("redis缓存失败");
 		}
-		String username = "";
-		String APIKEY = "";
-		String content = "【newLangs域名】您的验证码为：" + code;
+		String username = "houlangs";
+		String APIKEY = "";  // 填写你的短信宝apikey
+		String content = "【二级域名】您的验证码为：" + code;
 		log.info("code = {}", code);
 
 		String result = SMSAPI.sms(username, APIKEY, phone, content);
@@ -214,7 +214,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		}
 
 		String url = "https://eid.shumaidata.com/eid/check";
-		String appCode = "0870bf07f5cc42fbb652e9ed207ebb88";
+		String appCode = ""; // 填写你的appcode
 		Map<String, String> params = new HashMap<>();
 		params.put("idcard", idNumber);
 		params.put("name", name);
@@ -305,7 +305,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	public SaResult login(LoginDto dto, HttpServletRequest request) {
 		// 判断是否登录
 		if (StpUtil.isLogin()) {
-			return SaResult.error("已经登录过了，<a href=\"https://app.houlangs.com/\">点此返回</a>");
+			return SaResult.error("已经登录过了");
 		}
 
 		// 查询用户
@@ -401,18 +401,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		if (user == null) {
 			return SaResult.error("账号不存在");
 		}
-
-		// 更新邮箱
-		// if (!StrUtil.hasBlank(dto.getEmail())) {
-		// if (StpUtil.hasRole("1")) {
-		// user.setEmail(dto.getEmail());
-		// user.setUpdatedTime(LocalDateTime.now());
-		// updateById(user);
-		// } else {
-		// return SaResult.error("需要管理员权限");
-		// }
-		// }
-
 		// 更新密码
 		if (!StrUtil.hasBlank(dto.getPassword())) {
 			// 写入参数
@@ -494,8 +482,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 			try {
 				// 邮件发送验证码
-				MailUtil.send(account, CollUtil.newArrayList(email), "newLangs域名", "<p>尊敬的用户：</p>" +
-						"我们很抱歉地通知您，由于您违反了newLangs相关使用，我们封禁了您的账户，并删除了账户内的全部解析。"
+				MailUtil.send(account, CollUtil.newArrayList(email), "二级域名分发", "<p>尊敬的用户：</p>" +
+						"我们很抱歉地通知您，由于您违反了使用协议，我们封禁了您的账户，并删除了账户内的全部解析。"
 						+
 						" 为给您带来不便表示歉意，我们深感抱歉。若你认为封禁您的账号有待商榷，请回复此邮件。我们将尽最大努力保障您的权益，并在尽可能短的时间内解决这一问题。感谢您的耐心等待和理解。",
 						false);
@@ -597,6 +585,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		} else {
 			return SaResult.error("已经签到过了，请明天再来");
 		}
-		return SaResult.ok("签到成功，获得1积分");
+		return SaResult.ok("签到成功");
 	}
 }
