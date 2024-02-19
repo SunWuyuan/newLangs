@@ -40,7 +40,7 @@ class NewlangsSpringbootApplicationTests {
         }
 		documentString = String.join("", chineseCharacterList);
 		System.out.println(documentString);
-		String keyWord = "厚浪";
+		String keyWord = "newLangs";
 		if (documentString.contains(keyWord)) {
 			System.out.println("检查出违规词！");
 		} else {

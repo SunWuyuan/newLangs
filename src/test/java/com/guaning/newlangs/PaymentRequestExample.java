@@ -30,7 +30,7 @@ public class PaymentRequestExample {
     params.put("return_url", "支付完成后跳转url"); // 页面跳转通知地址，支付完成后用户将被重定向到这个地址
     params.put("name", "解析额度充值"); // 商品名称（充值x解析额度）
     params.put("money", "1.00"); // 商品金额
-    params.put("sitename", "嘉创二级域名"); // 网站名称，别写和厚浪有关的，有些支付会看到大网站就针对性跑路
+    params.put("sitename", "嘉创二级域名"); // 网站名称，别写和newLangs有关的，有些支付会看到大网站就针对性跑路
 
     // 生成签名
     String sign = generateSign(params, merchantKey);
