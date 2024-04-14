@@ -34,4 +34,6 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
           name: newLangsJarfile
-          path: target/*.jar,application.yml
+          path: 
+              target/*.jar
+              application.yml
