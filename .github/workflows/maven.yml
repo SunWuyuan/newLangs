@@ -30,12 +30,11 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean package -Dmaven.test.skip=true
-    - name: Create GitHub release
-      uses: marvinpinto/action-automatic-releases@latest
+    - uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: ${{ env.ReleaseVersion }}
-        title: ${{ env.ReleaseVersion }}
-        prerelease: false
-        files: |
-          target/*.jar
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: |
+            target/*.jar
