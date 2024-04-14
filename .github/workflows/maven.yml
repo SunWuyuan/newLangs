@@ -36,4 +36,4 @@ jobs:
           name: newLangsJarfile
           path: |
             target/newlangs-springboot-4.0.jar
-            application.yml
+            target/application.yml
