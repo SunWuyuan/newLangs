@@ -35,5 +35,5 @@ jobs:
       with:
           name: newLangsJarfile
           path: |
-            target/*.jar
+            target/newlangs-springboot-4.0.jar
             application.yml
