@@ -33,5 +33,5 @@ jobs:
     - name: Upload JAR file
       uses: actions/upload-artifact@v2
       with:
-          name: jarfile
+          name: newLangsJarfile
           path: target/*.jar
