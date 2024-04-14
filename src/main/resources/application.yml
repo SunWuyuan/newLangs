@@ -1,3 +1,4 @@
+# 不要修改此文件，请将application.yml放置于与jar文件同级目录
 server:
   port: 8080
   compression:
