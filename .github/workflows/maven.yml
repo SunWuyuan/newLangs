@@ -30,11 +30,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean package -Dmaven.test.skip=true
-    - uses: "marvinpinto/action-automatic-releases@latest"
+    - name: Upload JAR file
+      uses: actions/upload-artifact@v2
       with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: true
-          title: "Development Build"
-          files: |
-           *.jar
+          name: jarfile
+          path: target/*.jar
