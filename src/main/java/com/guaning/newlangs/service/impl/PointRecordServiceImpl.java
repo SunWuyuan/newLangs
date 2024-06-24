@@ -6,7 +6,6 @@ import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.guaning.newlangs.dto.BuyPointDto;
 import com.guaning.newlangs.entity.Config;
 import com.guaning.newlangs.entity.PointRecord;
 import com.guaning.newlangs.entity.User;
@@ -21,14 +20,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -150,7 +141,7 @@ public class PointRecordServiceImpl extends ServiceImpl<PointRecordMapper, Point
 		}
 		
 		//通用兑换码
-		if (pointCode.equals("我爱OurWorld(域名服务)")) {
+		if (pointCode.equals("我爱厚浪")) {
 			PointRecord pointRecord = new PointRecord();
 			User user = userService.getById(userId);
 			int oldPoint = user.getPoint();
@@ -188,7 +179,6 @@ public class PointRecordServiceImpl extends ServiceImpl<PointRecordMapper, Point
 				pointRecord.setAction("增加");
 				pointRecord.setBalance(point);
 				pointRecord.setRest(oldPoint + point);
-				pointRecord.setRemark("购买积分");
 				pointRecord.setCreatedTime(LocalDateTime.now());
 				add(pointRecord);
 				

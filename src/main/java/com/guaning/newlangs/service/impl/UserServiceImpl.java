@@ -114,8 +114,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 		try {
 			// 邮件发送验证码
-			MailUtil.send(account, CollUtil.newArrayList(email), "OurWorld域名服务验证码",
-					"您的OurWorld域名服务邮箱验证码为：" + code + ",验证码有效期为2分钟,感谢您的注册,祝您使用愉快！!", false);
+			MailUtil.send(account, CollUtil.newArrayList(email), "NewLangs",
+					"您的邮箱验证码为：" + code + ",验证码有效期为2分钟,感谢您的注册,祝您使用愉快！!", false);
 		} catch (Exception e) {
 			// 发送失败，删除缓存
 			redisTemplate.delete(email);
@@ -141,9 +141,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		} catch (Exception e) {
 			return SaResult.error("redis缓存失败");
 		}
-		String username = "";
-		String APIKEY = "";
-		String content = "【OurWorld(域名服务)域名】您的验证码为：" + code;
+		String username = "短信宝账号";
+		String APIKEY = "短信宝APIkey";
+		String content = "【二级域名】您的验证码为：" + code;
 		log.info("code = {}", code);
 
 		String result = SMSAPI.sms(username, APIKEY, phone, content);
@@ -214,7 +214,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		}
 
 		String url = "https://eid.shumaidata.com/eid/check";
-		String appCode = "0870bf07f5cc42fbb652e9ed207ebb88";
+		String appCode = "APPcode";
 		Map<String, String> params = new HashMap<>();
 		params.put("idcard", idNumber);
 		params.put("name", name);
@@ -494,8 +494,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 			try {
 				// 邮件发送验证码
-				MailUtil.send(account, CollUtil.newArrayList(email), "OurWorld(域名服务)域名", "<p>尊敬的用户：</p>" +
-						"我们很抱歉地通知您，由于您违反了<a href=\"https://forum.houlangs.com/d/2-hou-lang-zheng-ce-lie-biao\">OurWorld(域名服务)相关使用政策</a>，我们封禁了您的账户，并删除了账户内的全部解析。"
+				MailUtil.send(account, CollUtil.newArrayList(email), "厚浪域名", "<p>尊敬的用户：</p>" +
+						"我们很抱歉地通知您，由于您违反了<a href=\"https://forum.houlangs.com/d/2-hou-lang-zheng-ce-lie-biao\">厚浪相关使用政策</a>，我们封禁了您的账户，并删除了账户内的全部解析。"
 						+
 						" 为给您带来不便表示歉意，我们深感抱歉。若你认为封禁您的账号有待商榷，请回复此邮件。我们将尽最大努力保障您的权益，并在尽可能短的时间内解决这一问题。感谢您的耐心等待和理解。",
 						false);

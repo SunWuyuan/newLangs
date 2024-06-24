@@ -15,9 +15,9 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/数据库名?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
-      username:  #填写你的数据库名
-      password: #填写你的数据库密码
+      url: jdbc:mysql://localhost:3306/数据库名称?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: 数据库名称
+      password: 数据库密码
   redis:
     database: 0
     host: localhost
@@ -37,6 +37,6 @@ sa-token:
     timeout: -1
     active-timeout: -1
     is-concurrent: true
-    is-share: true
-    token-style: uuid
-    is-log: true
+    is-share: false
+    token-style: tik
+    is-log: false
